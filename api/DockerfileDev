@@ -1,0 +1,9 @@
+﻿FROM node:18
+
+# Install nestjs/cli
+WORKDIR /usr/src/app/dev
+COPY package*.json ./
+RUN npm i -g @nestjs/cli
+
+# Copy Source Code
+COPY . .
