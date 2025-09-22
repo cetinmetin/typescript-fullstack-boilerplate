@@ -4,7 +4,7 @@ pipelineJob('TypeScript-Fullstack-Boilerplate') {
       scm {
         git {
           remote {
-            url('https://github.com/godardth/typescript-fullstack-boilerplate.git')
+            url('https://github.com/cetinmetin/typescript-fullstack-boilerplate.git')
           }
           branch('*/main')
         }
