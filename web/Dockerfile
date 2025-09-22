@@ -3,7 +3,7 @@ FROM nginx:1.22-alpine
 # NODE & ANGULAR CLI
 RUN apk add npm
 RUN npm install -g @angular/cli
-ENV NODE_OPTIONS=--max_old_space_size=4096
+ENV NODE_OPTIONS="--max_old_space_size=4096"
 
 # COPY SOURCE
 WORKDIR /home/prod
