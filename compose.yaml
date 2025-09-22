@@ -1,5 +1,5 @@
 services:
-    
+
   db:
     image: postgres
     ports:
@@ -14,8 +14,10 @@ services:
       - POSTGRES_PASSWORD=${DATABASE_PASSWORD}
 
   api:
-    build: ./api
-    command: sh -c 'cd api; ./configure.sh; npm run start:debug'
+    build:
+      context: ./api
+      dockerfile: DockerfileDev
+    command: sh -c 'cd api; sh configure.sh; npm install --quiet; npm run start:debug'
     ports:
       - ${BACKEND_PORT}:${BACKEND_PORT}
       - 9229:9229
@@ -25,10 +27,11 @@ services:
       - db
 
   web:
-    build: 
+    build:
       context: ./web
+      dockerfile: DockerfileDev
     working_dir: /home/dev
-    command: sh -c 'cd web; sh configure.sh; ./node_modules/.bin/ng serve --host 0.0.0.0'
+    command: sh -c 'cd web; sh configure.sh; npm install --quiet; ./node_modules/.bin/ng serve --host 0.0.0.0'
     ports:
       - ${FRONTEND_PORT}:4200
     volumes:
