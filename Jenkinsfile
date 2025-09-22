@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Clone') {
             steps {
-                git branch: 'main', url: 'https://github.com/godardth/typescript-fullstack-boilerplate.git'
+                git branch: 'main', url: 'https://github.com/cetinmetin/typescript-fullstack-boilerplate.git'
             }
         }
         stage('Configure') {
