@@ -1,5 +1,6 @@
 import { DataSource } from 'typeorm';
-import { env } from '../../env/env'; 
+import { env } from '../../env/env';
+import fs from "fs";
 
 export const databaseProviders = [
   {
@@ -15,7 +16,12 @@ export const databaseProviders = [
         entities: [
             __dirname + '/../**/*.entity{.ts,.js}',
         ],
-        synchronize: env.database_sync == 'true'
+        synchronize: env.database_sync == 'true',
+        ssl: {
+          rejectUnauthorized: true,
+          require: true,
+          ca: fs.readFileSync('server-certificates/postgres.pem').toString()
+        }
       });
       return dataSource.initialize();
     },
