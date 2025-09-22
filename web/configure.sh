@@ -7,7 +7,7 @@ else
     ENV_FILE=../.env
 fi
 set -o allexport
-source "$ENV_FILE"
+. "$ENV_FILE"
 set +o allexport
 
 # Copy template file to target env file
